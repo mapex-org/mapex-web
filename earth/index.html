@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>
+        mapex.org - earth viewer
+    </title>
+
+    <!-- deck.gl standalone bundle -->
+    <script src="js/deck.min.js"></script>
+    <script src="js/mapbox-gl.js"></script>
+    <link href="css/mapbox-gl.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            background: #111;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+
+<script type="text/javascript">
+    // const { DeckGL, MVTLayer, BitmapLayer, COORDINATE_SYSTEM } = deck;
+    const { DeckGL, BitmapLayer, COORDINATE_SYSTEM } = deck;
+
+    new DeckGL({
+        mapStyle: 'https://api.mapex.org/styles/dark.json',
+        controller: { scrollZoom: { speed: 0.005, smooth: true }, touchRotate: false, doubleClickZoom: true },
+        initialViewState: {
+            longitude: 2.27,
+            latitude: 48.86,
+            zoom: 4,
+            minZoom: 0,
+            maxZoom: 22
+        },
+        layers: []
+    });
+</script>
+
+</html>

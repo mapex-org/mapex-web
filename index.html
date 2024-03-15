@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Mapex.org</title>
+  <meta property="og:description" content="Mapex Maps." />
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='js/maplibre-gl/maplibre-gl.css' />
+  <script src='js/maplibre-gl/maplibre-gl.js'></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body,
+    #map {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script>
+    const map = new maplibregl.Map({
+      container: 'map', // container id
+      style:
+        'https://tile.mapex.org/styles/base/style.json', //stylesheet location
+      center: [11.255, 43.77], // starting position
+      zoom: 3 // starting zoom
+    });
+
+    map.addControl(new maplibregl.FullscreenControl());
+  </script>
+</body>
+
+</html>
