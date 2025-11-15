@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel='stylesheet' href='js/maplibre-gl/maplibre-gl.css' />
   <script src='js/maplibre-gl/maplibre-gl.js'></script>
+  <script src="https://unpkg.com/pmtiles@4.1.0/dist/pmtiles.js"></script>
   <style>
     body {
       margin: 0;
@@ -26,15 +27,18 @@
   <div id="map"></div>
 
   <script>
+    let protocol = new pmtiles.Protocol({ metadata: true });
+    maplibregl.addProtocol("pmtiles", protocol.tile);
+
     const map = new maplibregl.Map({
       container: 'map', // container id
-      style:
-        'https://maputnik.github.io/osm-liberty/style.json', //stylesheet location
-      center: [11.255, 43.77], // starting position
-      zoom: 8 // starting zoom
+      style: 'styles/default.json', // style URL
+      center: [-2.255, 42.77], // starting position
+      zoom: 4 // starting zoom
     });
-
-    map.addControl(new maplibregl.FullscreenControl());
+    // map.showTileBoundaries = true;
+    // map.addControl(new maplibregl.FullscreenControl());
+    map.addControl(new maplibregl.NavigationControl());
   </script>
 </body>
 
