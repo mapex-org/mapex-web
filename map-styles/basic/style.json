@@ -1,0 +1,38 @@
+{
+  "version": 8,
+  "sources": {
+    "demo": {
+      "type": "vector",
+      "url": "pmtiles:///tiles/demo.pmtiles"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f5f5f5"
+      }
+    },
+    {
+      "id": "polygons",
+      "type": "fill",
+      "source": "demo",
+      "source-layer": "layer0",
+      "paint": {
+        "fill-color": "#4CAF50",
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "polygons-outline",
+      "type": "line",
+      "source": "demo",
+      "source-layer": "layer0",
+      "paint": {
+        "line-color": "#2E7D32",
+        "line-width": 1
+      }
+    }
+  ]
+}
