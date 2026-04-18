@@ -1,0 +1,23 @@
+{
+  "version": 8,
+  "name": "MapEx Template Chapter Scroller",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "omt": {
+      "type": "vector",
+      "url": "pmtiles://https://tiles.mapex.org/planet.pmtiles"
+    }
+  },
+  "layers": [
+    { "id": "background", "type": "background", "paint": { "background-color": "#0f1420" } },
+    { "id": "landcover", "type": "fill", "source": "omt", "source-layer": "landcover", "paint": { "fill-color": "#202c37", "fill-opacity": 0.48 } },
+    { "id": "landuse", "type": "fill", "source": "omt", "source-layer": "landuse", "paint": { "fill-color": "#1a2431", "fill-opacity": 0.55 } },
+    { "id": "water", "type": "fill", "source": "omt", "source-layer": "water", "paint": { "fill-color": "#1d4b67" } },
+    { "id": "waterway", "type": "line", "source": "omt", "source-layer": "waterway", "paint": { "line-color": "#4d88ad", "line-width": ["interpolate", ["linear"], ["zoom"], 7, 0.4, 14, 2.2] } },
+    { "id": "roads-main", "type": "line", "source": "omt", "source-layer": "transportation", "filter": ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "secondary"]]], "paint": { "line-color": "#996c86", "line-width": ["interpolate", ["linear"], ["zoom"], 6, 0.5, 13, 2.5, 16, 5.1], "line-opacity": 0.85 } },
+    { "id": "roads-minor", "type": "line", "source": "omt", "source-layer": "transportation", "filter": ["in", ["get", "class"], ["literal", ["tertiary", "minor", "service", "track"]]], "paint": { "line-color": "#344150", "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.25, 16, 1.9], "line-opacity": 0.95 } },
+    { "id": "boundary", "type": "line", "source": "omt", "source-layer": "boundary", "filter": ["==", ["get", "admin_level"], 2], "paint": { "line-color": "#6e8094", "line-dasharray": [4, 2], "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.5, 8, 1.2], "line-opacity": 0.56 } },
+    { "id": "place-country", "type": "symbol", "source": "omt", "source-layer": "place", "filter": ["==", ["get", "class"], "country"], "layout": { "text-field": ["coalesce", ["get", "name:latin"], ["get", "name"]], "text-font": ["Noto Sans Regular"], "text-size": ["interpolate", ["linear"], ["zoom"], 2, 10, 6, 13], "text-transform": "uppercase" }, "paint": { "text-color": "#a9bfd4", "text-halo-color": "rgba(15,20,32,0.92)", "text-halo-width": 1 } },
+    { "id": "place-city", "type": "symbol", "source": "omt", "source-layer": "place", "filter": ["in", ["get", "class"], ["literal", ["city", "town"]]], "minzoom": 4, "layout": { "text-field": ["coalesce", ["get", "name:latin"], ["get", "name"]], "text-font": ["Noto Sans Regular"], "text-size": ["interpolate", ["linear"], ["zoom"], 4, 10, 10, 13], "text-offset": [0, 0.6], "text-anchor": "top" }, "paint": { "text-color": "#d4e2ef", "text-halo-color": "rgba(15,20,32,0.92)", "text-halo-width": 1.1 } }
+  ]
+}
