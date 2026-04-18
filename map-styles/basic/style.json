@@ -3,7 +3,7 @@
   "sources": {
     "demo": {
       "type": "vector",
-      "url": "pmtiles:///tiles/demo.pmtiles"
+      "url": "pmtiles://https://tiles.mapex.org/planet.pmtiles"
     }
   },
   "layers": [
