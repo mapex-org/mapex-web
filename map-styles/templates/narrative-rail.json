@@ -1,6 +1,9 @@
 {
   "version": 8,
   "name": "MapEx Template Narrative Rail",
+  "projection": {
+    "type": "globe"
+  },
   "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   "sources": {
     "omt": {
