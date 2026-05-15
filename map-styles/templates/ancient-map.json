@@ -1,0 +1,151 @@
+{
+  "version": 8,
+  "name": "Pirates! 90s Gold Edition - Full 3D",
+  "metadata": {
+    "maputnik:renderer": "mlgljs",
+    "historical_context": "Age of Sail"
+  },
+  "sources": {
+    "omt": {
+      "type": "vector",
+      "url": "pmtiles://https://tiles.mapex.org/planet.pmtiles"
+    }
+  },
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#dfd2ae" }
+    },
+    {
+      "id": "landcover-wood",
+      "type": "fill",
+      "source": "omt",
+      "source-layer": "landcover",
+      "filter": ["in", "class", "wood", "forest"],
+      "paint": { "fill-color": "#8c966e", "fill-opacity": 0.45 }
+    },
+    {
+      "id": "landuse-residential",
+      "type": "fill",
+      "source": "omt",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "residential"],
+      "paint": { "fill-color": "#c4a484", "fill-opacity": 0.4 }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "omt",
+      "source-layer": "water",
+      "paint": { "fill-color": "#94b8b8" }
+    },
+    {
+      "id": "waterway",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "waterway",
+      "paint": {
+        "line-color": "#3b5e5e",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.5, 16, 2],
+        "line-dasharray": [2, 1]
+      }
+    },
+    {
+      "id": "roads-caminos",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "transportation",
+      "filter": ["in", "class", "motorway", "trunk", "primary", "secondary"],
+      "paint": {
+        "line-color": "#6d4c41",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 5, 0.5, 15, 2.5],
+        "line-dasharray": [3, 1.5],
+        "line-opacity": 0.6
+      }
+    },
+    {
+      "id": "boundary-admin-2",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "boundary",
+      "filter": ["==", "admin_level", 2],
+      "paint": {
+        "line-color": "#2c1b0e",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.8, 10, 2],
+        "line-dasharray": [8, 4, 2, 4]
+      }
+    },
+    {
+      "id": "buildings-3d",
+      "type": "fill-extrusion",
+      "source": "omt",
+      "source-layer": "building",
+      "minzoom": 14,
+      "paint": {
+        "fill-extrusion-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "render_height"],
+          0, "#d2b48c",
+          50, "#8b4513"
+        ],
+        "fill-extrusion-height": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14, 0,
+          15, ["get", "render_height"]
+        ],
+        "fill-extrusion-base": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          14, 0,
+          15, ["get", "render_min_height"]
+        ],
+        "fill-extrusion-opacity": 0.9,
+        "fill-extrusion-vertical-gradient": true
+      }
+    },
+    {
+      "id": "place-country-labels",
+      "type": "symbol",
+      "source": "omt",
+      "source-layer": "place",
+      "filter": ["==", "class", "country"],
+      "layout": {
+        "text-field": ["get", "name:latin"],
+        "text-font": ["Noto Serif Bold"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 2, 12, 6, 22],
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.4
+      },
+      "paint": {
+        "text-color": "#2c1b0e",
+        "text-halo-color": "rgba(223, 210, 174, 0.8)",
+        "text-halo-width": 2.5
+      }
+    },
+    {
+      "id": "place-city-labels",
+      "type": "symbol",
+      "source": "omt",
+      "source-layer": "place",
+      "filter": ["in", "class", "city", "town"],
+      "layout": {
+        "text-field": ["get", "name:latin"],
+        "text-font": ["Noto Serif Italic"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 5, 10, 12, 16],
+        "text-anchor": "top",
+        "text-offset": [0, 0.5]
+      },
+      "paint": {
+        "text-color": "#4e342e",
+        "text-halo-color": "rgba(223, 210, 174, 0.9)",
+        "text-halo-width": 1.5
+      }
+    }
+  ]
+}
