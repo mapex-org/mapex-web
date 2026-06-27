@@ -1,7 +1,7 @@
 {
   "version": 8,
   "name": "MapEx World Cup 2026 — Match Day",
-  "sprite": "https://mapex.org/sprites/worldcup",
+  "sprite": "https://www.mapex.org/sprites/worldcup",
   "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   "sources": {
     "omt": {
