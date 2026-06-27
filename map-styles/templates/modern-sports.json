@@ -1,0 +1,144 @@
+{
+  "version": 8,
+  "name": "MapEx World Cup 2026 — Match Day",
+  "sprite": "https://mapex.org/sprites/worldcup",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "omt": {
+      "type": "vector",
+      "url": "pmtiles://https://tiles.mapex.org/planet.pmtiles"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f4f6f8",
+        "background-pattern": "carbon-texture"
+      }
+    },
+    {
+      "id": "landcover",
+      "type": "fill",
+      "source": "omt",
+      "source-layer": "landcover",
+      "paint": {
+        "fill-pattern": "grass-texture",
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "landuse",
+      "type": "fill",
+      "source": "omt",
+      "source-layer": "landuse",
+      "paint": { "fill-color": "#e7e9ec", "fill-opacity": 0.6 }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "omt",
+      "source-layer": "water",
+      "paint": { "fill-color": "#7fc4e0" }
+    },
+    {
+      "id": "waterway",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "waterway",
+      "paint": {
+        "line-color": "#5fa9c8",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 7, 0.3, 14, 1.8]
+      }
+    },
+    {
+      "id": "roads-main",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "transportation",
+      "filter": ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "secondary"]]],
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 6, 0.6, 13, 2.6, 16, 5],
+        "line-opacity": 0.95
+      }
+    },
+    {
+      "id": "roads-main-casing",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "transportation",
+      "filter": ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "secondary"]]],
+      "paint": {
+        "line-color": "#c9a227",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 6, 1, 13, 3.4, 16, 6.2],
+        "line-opacity": 0.5
+      }
+    },
+    {
+      "id": "roads-minor",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "transportation",
+      "filter": ["in", ["get", "class"], ["literal", ["tertiary", "minor", "service", "track"]]],
+      "paint": {
+        "line-color": "#d4d8dd",
+        "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.3, 16, 1.8],
+        "line-opacity": 0.9
+      }
+    },
+    {
+      "id": "boundary-country",
+      "type": "line",
+      "source": "omt",
+      "source-layer": "boundary",
+      "filter": ["==", ["get", "admin_level"], 2],
+      "paint": {
+        "line-color": "#a8780f",
+        "line-dasharray": [3, 2],
+        "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.6, 8, 1.4],
+        "line-opacity": 0.65
+      }
+    },
+    {
+      "id": "place-country",
+      "type": "symbol",
+      "source": "omt",
+      "source-layer": "place",
+      "filter": ["==", ["get", "class"], "country"],
+      "layout": {
+        "text-field": ["coalesce", ["get", "name:latin"], ["get", "name"]],
+        "text-font": ["Noto Sans Bold"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 2, 10, 6, 14],
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.05
+      },
+      "paint": {
+        "text-color": "#7a5a0d",
+        "text-halo-color": "rgba(255,255,255,0.9)",
+        "text-halo-width": 1.3
+      }
+    },
+    {
+      "id": "place-city",
+      "type": "symbol",
+      "source": "omt",
+      "source-layer": "place",
+      "filter": ["in", ["get", "class"], ["literal", ["city", "town"]]],
+      "minzoom": 4,
+      "layout": {
+        "text-field": ["coalesce", ["get", "name:latin"], ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 4, 10, 10, 13],
+        "text-offset": [0, 0.6],
+        "text-anchor": "top"
+      },
+      "paint": {
+        "text-color": "#3a4452",
+        "text-halo-color": "rgba(255,255,255,0.9)",
+        "text-halo-width": 1.2
+      }
+    }
+  ]
+}

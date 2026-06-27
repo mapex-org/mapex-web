@@ -1,0 +1,16 @@
+{
+  "grass-texture": {
+    "width": 32,
+    "height": 32,
+    "x": 0,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "carbon-texture": {
+    "width": 16,
+    "height": 16,
+    "x": 32,
+    "y": 0,
+    "pixelRatio": 1
+  }
+}
