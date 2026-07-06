@@ -10913,6 +10913,6 @@
             }
         }
     ],
-    "sprite": "https://www.mapex.org/sprites/worldcup",
+    "sprite": "https://www.mapex.org/sprites/black",
     "glyphs": "https://www.mapex.org/fonts/{fontstack}/{range}.pbf"
 }
